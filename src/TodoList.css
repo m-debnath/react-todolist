@@ -1,0 +1,11 @@
+.todoListMain .header input {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.todoListMain .header button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    margin-right: 0px;
+}
