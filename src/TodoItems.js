@@ -9,8 +9,8 @@ class TodoItems extends Component {
     }
 
     createTasks(item) {
-        return <li onClick={() => this.delete(item.key)} 
-                    key={item.key}>{item.text}</li>
+        return (<li onClick={() => this.delete(item.key)} 
+                    key={item.key}>{item.text}</li>);
     }
 
     delete(key) {
@@ -19,6 +19,12 @@ class TodoItems extends Component {
 
     render() {
         var todoEntries = this.props.entries;
+        // sort in reverse order
+        // todoEntries = todoEntries.sort(function (a, b) {
+        //     return a.key < b.key ?  1
+        //          : a.key > b.key ? -1
+        //          : 0;
+        // });
         var listItems = todoEntries.map(this.createTasks);
 
         return (

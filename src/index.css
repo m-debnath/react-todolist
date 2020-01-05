@@ -6,8 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 50px;
-  /* background-color: #66CCFF; */
-  background-color: #2092cc;
+  background-color: #F2F3F8;
+  /* background-color: #2092cc; */
 }
 
 code {
@@ -17,5 +17,8 @@ code {
 
 #root {
   display: flex;
-  justify-content: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #F2F3F8;
+  align-items: center;
 }
