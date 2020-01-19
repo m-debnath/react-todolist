@@ -42,7 +42,7 @@ class TodoList extends Component {
                     items: prevState.items.concat(newItem)
                 };
             });
-            this.notify('Task added.', 'success');
+            this.notify('Task added.', 'info');
         } else {
             this.notify('Nothing to add!', 'error');
         }
