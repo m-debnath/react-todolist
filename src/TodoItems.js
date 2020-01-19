@@ -13,6 +13,14 @@ class TodoItems extends Component {
         });
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.entries !== prevProps.entries) {
+            this.props.entries.forEach(element => {
+                this.autoResize(element.key);
+            });
+        }
+    }
+
     createTasks(item) {
         return (<div className="wrapper" key={item.key}>
                     <div>
@@ -22,8 +30,7 @@ class TodoItems extends Component {
                             ref={(a) => this[`textArea${item.key}`] = a}
                             onChange={() => this.autoResize(item.key)}
                             onBlur={() => this.edit(item.key)}
-                            defaultValue={item.text}
-                            style={{height: "auto"}}>
+                            defaultValue={item.text}>
                         </textarea>
                     </div>
                     <div>
