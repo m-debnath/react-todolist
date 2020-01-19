@@ -74,54 +74,19 @@ class TodoList extends Component {
     notify(msg, level) {
         switch(level) {
             case 'success':
-                toast.success(msg, {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
+                toast.success(msg);
                 break;
             case 'error':
-                toast.error(msg, {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
+                toast.error(msg);
                 break;
             case 'warn':
-                toast.warn(msg, {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
+                toast.warn(msg);
                 break;
             case 'info':
-                toast.info(msg, {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
+                toast.info(msg);
                 break;
             default:
-                toast.info(msg, {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true
-                });
+                toast.info(msg);
                 break;
         }
     }
@@ -129,7 +94,17 @@ class TodoList extends Component {
     render() {
         return (
             <div className="todoListMain">
-                <ToastContainer transition={Zoom} />
+                <ToastContainer 
+                    transition={Zoom}
+                    position="top-center"
+                    autoClose={2000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnVisibilityChange
+                    draggable
+                    pauseOnHover />
                 <div className="wrapper">
                     <div>
                         <h3>Things to do, places to go</h3>
