@@ -7,8 +7,8 @@
 }
 
 .todoListMain .wrapper h3 {
-    color: #000;
-    font-size: 24px;
+    color: rgb(7, 107, 246);
+    font-size: 26px;
     text-align: center;
     margin-bottom: 40px;
 }
@@ -20,7 +20,7 @@
 .todoListMain .wrapper input {
     padding: 11px;
     font-size: 16px;
-    width: 228px;
+    width: 240px;
     border-radius: 2px;
 }
 
@@ -29,19 +29,18 @@
 }
 
 .todoListMain .wrapper button.addButton {
+    color: rgb(7, 107, 246);
     float: right;
-    height: 44px;
-    width: 44px;
-    background-image: url("/add.svg");
-    background-repeat: no-repeat;
-    background-size: 38px 38px;
-    background-color: #F2F3F8;
-    border: 2px solid #F2F3F8;
+    font-size: 44px;
+    border: 0px;
+    padding: 0px;
+    background-color:rgba(0, 0, 0, 0);
+    margin-left: 10px;
 }
 
 .todoListMain .wrapper button.addButton:hover {
+    color: #f19c41;
     cursor: pointer;
-    background-image: url("/add_hover.svg");
 }
 
 .todoListMain .wrapper button.addButton:focus {
@@ -50,20 +49,88 @@
 
 .todoListMain .wrapper .theList {
     padding: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
-.todoListMain .wrapper .theList li {
-    color: #333;
-    background-color: #e19c41;
-    padding: 15px;
-    margin-bottom: 15px;
+.todoListMain .wrapper .theList .wrapper:nth-child(odd) {
+    width: 314px;
+    background-color: #f3942e;
+    margin-top: 10px;
     border-radius: 5px;
-    list-style: none;
-
     transition: background-color .2s ease-out;
 }
 
-.todoListMain .wrapper li:hover {
-    background-color: #2196F3;
+.todoListMain .wrapper .theList .wrapper:nth-child(even) {
+    width: 314px;
+    background-color: #cc6c05;
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: background-color .2s ease-out;
+}
+
+.todoListMain .wrapper .theList .wrapper div textarea {
+    width: 244px;
+    background-color: #ffffff00;
+    padding-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    border: 1px solid #ffffff00;
+    resize: none;
+    color: #FFF;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.todoListMain .wrapper .theList .wrapper div textarea:focus {
+    outline: none;
+}
+
+.todoListMain .wrapper .theList .wrapper div button.deleteButton {
+    float: right;
+    font-size: 18px;
+    border: 0px;
+    padding: 0px;
+    margin-top: 16px;
+    margin-right: 10px;
+    background-color:rgba(0, 0, 0, 0);
+}
+
+.todoListMain .wrapper .theList .wrapper div button.deleteButton i {
+    color: white;
+}
+
+.todoListMain .wrapper .theList .wrapper div button.deleteButton i:hover {
     cursor: pointer;
+    color: rgb(7, 107, 246);
+}
+
+.todoListMain .wrapper button.deleteButton:focus {
+    outline: none;
+}
+
+.todoListMain .wrapper .theList .wrapper div button.editButton {
+    float: right;
+    font-size: 18px;
+    border: 0px;
+    padding: 0px;
+    margin-top: 16px;
+    margin-right: 5px;
+    background-color:rgba(0, 0, 0, 0);
+}
+
+.todoListMain .wrapper .theList .wrapper div button.editButton i {
+    color: white;
+}
+
+.todoListMain .wrapper .theList .wrapper div button.editButton i:hover {
+    cursor: pointer;
+    color: rgb(59, 136, 245);
+}
+
+.todoListMain .wrapper button.editButton:focus {
+    outline: none;
 }

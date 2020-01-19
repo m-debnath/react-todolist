@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TodoItems from './TodoItems'
 import './TodoList.css'
+import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
 
 class TodoList extends Component {
     constructor(props) {
@@ -23,10 +24,11 @@ class TodoList extends Component {
 
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.editItem = this.editItem.bind(this);
     }
 
     addItem(e) {
-        if (this._inputElement !== "") {
+        if (this._inputElement.value !== "") {
             var newItem = {
                 text: this._inputElement.value,
                 key: Date.now()
@@ -39,7 +41,6 @@ class TodoList extends Component {
                 };
             });
         }
-
         this._inputElement.value = "";
         e.preventDefault();
     }
@@ -48,12 +49,19 @@ class TodoList extends Component {
         var filteredItems = this.state.items.filter(function(item) {
             return(item.key !== key);
         });
-
         this.setState({
             items: filteredItems
         });
-
         localStorage.removeItem(key);
+    }
+
+    editItem(key, value) {
+        this.state.items.forEach(element => {
+            if(element.key === key) {
+                element.text = value;
+            }
+        });
+        localStorage.setItem(key, value);
     }
 
     render() {
@@ -61,8 +69,7 @@ class TodoList extends Component {
             <div className="todoListMain">
                 <div className="wrapper">
                     <div>
-                        <h3>A simple React JS todo app</h3>
-                        {/* <p><a href="https://www.youtube.com/watch?v=h5crrOsLbpk">Youtube tutorial</a></p> */}
+                        <h3>Things to do, places to go</h3>
                     </div>
                 </div>
                 <form className="wrapper createTask" onSubmit={this.addItem}>
@@ -71,16 +78,16 @@ class TodoList extends Component {
                                 placeholder="Enter task"></input>
                     </div>
                     <div>
-                        <button className="addButton" type="submit"></button>
+                        <button className="addButton" type="submit"><i className="fas fa-plus-square"></i></button>
                     </div>
                 </form>
                 <div className="wrapper">
                     <div>
                         <TodoItems entries={this.state.items}
-                                delete={this.deleteItem}/>
+                                delete={this.deleteItem}
+                                edit={this.editItem}/>
                     </div>
                 </div>
-                {/* <div>Icons made by <a href="https://www.flaticon.com/authors/inipagistudio" title="inipagistudio">inipagistudio</a> from <br/> <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
             </div>
         );
     }
