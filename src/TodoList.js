@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import TodoItems from './TodoItems'
 import './TodoList.css'
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class TodoList extends Component {
     constructor(props) {
@@ -40,6 +42,9 @@ class TodoList extends Component {
                     items: prevState.items.concat(newItem)
                 };
             });
+            this.notify('Task added.', 'success');
+        } else {
+            this.notify('Nothing to add!', 'error');
         }
         this._inputElement.value = "";
         e.preventDefault();
@@ -53,6 +58,7 @@ class TodoList extends Component {
             items: filteredItems
         });
         localStorage.removeItem(key);
+        this.notify('Task removed.', 'info');
     }
 
     editItem(key, value) {
@@ -62,11 +68,68 @@ class TodoList extends Component {
             }
         });
         localStorage.setItem(key, value);
+        this.notify('Task updated.', 'info');
+    }
+
+    notify(msg, level) {
+        switch(level) {
+            case 'success':
+                toast.success(msg, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                break;
+            case 'error':
+                toast.error(msg, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                break;
+            case 'warn':
+                toast.warn(msg, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                break;
+            case 'info':
+                toast.info(msg, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                break;
+            default:
+                toast.info(msg, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                break;
+        }
     }
 
     render() {
         return (
             <div className="todoListMain">
+                <ToastContainer transition={Zoom} />
                 <div className="wrapper">
                     <div>
                         <h3>Things to do, places to go</h3>
