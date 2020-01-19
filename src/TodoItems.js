@@ -57,10 +57,6 @@ class TodoItems extends Component {
         //          : 0;
         // });
         var listItems = todoEntries.map(this.createTasks);
-        // listItems.forEach(element => {
-        //     console.log(element.props.children[0].props.children.props.style);
-        // });
-
         return (
             <div className="theList">
             <FlipMove duration={150} easing="ease-out">
