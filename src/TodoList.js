@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import TodoItems from './TodoItems'
-import './TodoList.css'
-import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import TodoItems from './TodoItems';
+import './TodoList.css';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class TodoList extends Component {
     constructor(props) {
@@ -42,9 +41,9 @@ class TodoList extends Component {
                     items: prevState.items.concat(newItem)
                 };
             });
-            this.notify('Task added.', 'info');
+            // this.notify('Task added.', 'info');
         } else {
-            this.notify('Nothing to add!', 'error');
+            // this.notify('Nothing to add!', 'error');
         }
         this._inputElement.value = "";
         e.preventDefault();
@@ -58,7 +57,7 @@ class TodoList extends Component {
             items: filteredItems
         });
         localStorage.removeItem(key);
-        this.notify('Task removed.', 'info');
+        // this.notify('Task removed.', 'info');
     }
 
     editItem(key, value) {
@@ -68,7 +67,7 @@ class TodoList extends Component {
             }
         });
         localStorage.setItem(key, value);
-        this.notify('Task updated.', 'info');
+        // this.notify('Task updated.', 'info');
     }
 
     notify(msg, level) {
@@ -105,27 +104,24 @@ class TodoList extends Component {
                     pauseOnVisibilityChange
                     draggable
                     pauseOnHover />
-                <div className="wrapper">
-                    <div>
-                        <h3>Things to do, places to go</h3>
-                    </div>
-                </div>
-                <form className="wrapper createTask" onSubmit={this.addItem}>
-                    <div>
-                        <input ref={(a) => this._inputElement = a}
-                                placeholder="Enter task"></input>
-                    </div>
-                    <div>
-                        <button className="addButton" type="submit"><i className="fas fa-plus-square"></i></button>
-                    </div>
-                </form>
-                <div className="wrapper">
-                    <div>
-                        <TodoItems entries={this.state.items}
-                                delete={this.deleteItem}
-                                edit={this.editItem}/>
-                    </div>
-                </div>
+                <Container>
+                    <Row>
+                        <Col><h3>Things to do, Places to go.</h3></Col>
+                    </Row>
+                    <form onSubmit={this.addItem}>
+                    <Row className="addTask">
+                        <Col xs={10}><input ref={(a) => this._inputElement = a}
+                                placeholder="add new task"></input>
+                        </Col>
+                        <Col xs={2}>
+                            <Button variant="info" type="submit"><i className="fas fa-plus"></i></Button>
+                        </Col>
+                    </Row>
+                    </form>
+                    <TodoItems entries={this.state.items}
+                            delete={this.deleteItem}
+                            edit={this.editItem}/>
+                </Container>
             </div>
         );
     }

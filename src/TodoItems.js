@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Row, Col, Button, ListGroup } from 'react-bootstrap';
 import FlipMove from 'react-flip-move';
 
 class TodoItems extends Component {
@@ -9,6 +10,7 @@ class TodoItems extends Component {
 
     componentDidMount() {
         this.props.entries.forEach(element => {
+            this.autoResize(element.key);
             this.autoResize(element.key);
         });
     }
@@ -22,21 +24,22 @@ class TodoItems extends Component {
     }
 
     createTasks(item) {
-        return (<div className="wrapper" key={item.key}>
-                    <div>
-                        {/* <p contentEditable="true" onBlur={() => this.edit(item.key)}>{item.text}</p> */}
-                        <textarea 
-                            key={item.key}
-                            ref={(a) => this[`textArea${item.key}`] = a}
-                            onChange={() => this.autoResize(item.key)}
-                            onBlur={() => this.edit(item.key)}
-                            defaultValue={item.text}>
-                        </textarea>
-                    </div>
-                    <div>
-                        <button className="deleteButton" onClick={() => this.delete(item.key)}><i className="fas fa-trash"></i></button>
-                    </div>
-                </div>);
+        return (<ListGroup.Item key={item.key}>
+                    <Row>
+                        <Col xs={10}>
+                            <textarea 
+                                key={item.key}
+                                ref={(a) => this[`textArea${item.key}`] = a}
+                                onChange={() => this.autoResize(item.key)}
+                                onBlur={() => this.edit(item.key)}
+                                defaultValue={item.text}>
+                            </textarea>
+                        </Col>
+                        <Col xs={2}>
+                            <Button variant="danger" onClick={() => this.delete(item.key)}><i className="fas fa-trash"></i></Button>
+                        </Col>
+                    </Row>
+                </ListGroup.Item>);
     }
 
     delete(key) {
@@ -51,8 +54,10 @@ class TodoItems extends Component {
     }
 
     autoResize(key) {
+        console.log('Before ' + this[`textArea${key}`].style.height.toString());
         this[`textArea${key}`].style.height = "";
         this[`textArea${key}`].style.height = this[`textArea${key}`].scrollHeight + "px";
+        console.log('After ' + this[`textArea${key}`].style.height.toString());
     }
 
     render() {
@@ -65,13 +70,24 @@ class TodoItems extends Component {
         // });
         var listItems = todoEntries.map(this.createTasks);
         return (
-            <div className="theList">
+            <ListGroup>
             <FlipMove duration={150} easing="ease-out">
                 {listItems}
             </FlipMove>
-            </div>
+            </ListGroup>
         );
     }
 }
 
 export default TodoItems;
+
+
+/*
+                <ul className="list-group">
+                    <li className="list-group-item active">Cras justo odio</li>
+                    <li className="list-group-item">Dapibus ac facilisis in</li>
+                    <li className="list-group-item">Morbi leo risus</li>
+                    <li className="list-group-item">Porta ac consectetur ac</li>
+                    <li className="list-group-item">Vestibulum at eros</li>
+                </ul>
+*/
