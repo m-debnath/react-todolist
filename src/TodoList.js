@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form'
 import TodoItems from './TodoItems';
 import './TodoList.css';
-import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 class TodoList extends Component {
     constructor(props) {
@@ -41,9 +41,7 @@ class TodoList extends Component {
                     items: prevState.items.concat(newItem)
                 };
             });
-            // this.notify('Task added.', 'info');
         } else {
-            // this.notify('Nothing to add!', 'error');
         }
         this._inputElement.value = "";
         e.preventDefault();
@@ -67,60 +65,38 @@ class TodoList extends Component {
             }
         });
         localStorage.setItem(key, value);
-        // this.notify('Task updated.', 'info');
-    }
-
-    notify(msg, level) {
-        switch(level) {
-            case 'success':
-                toast.success(msg);
-                break;
-            case 'error':
-                toast.error(msg);
-                break;
-            case 'warn':
-                toast.warn(msg);
-                break;
-            case 'info':
-                toast.info(msg);
-                break;
-            default:
-                toast.info(msg);
-                break;
-        }
     }
 
     render() {
         return (
             <div className="todoListMain">
-                <ToastContainer 
-                    transition={Zoom}
-                    position="top-center"
-                    autoClose={2000}
-                    hideProgressBar
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnVisibilityChange
-                    draggable
-                    pauseOnHover />
                 <Container>
                     <Row>
-                        <Col><h3>Things to do, Places to go.</h3></Col>
+                        <Col><h3>Things to do, places to go.</h3></Col>
                     </Row>
-                    <form onSubmit={this.addItem}>
-                    <Row className="addTask">
-                        <Col xs={10}><input ref={(a) => this._inputElement = a}
-                                placeholder="add new task"></input>
-                        </Col>
-                        <Col xs={2}>
-                            <Button variant="info" type="submit"><i className="fas fa-plus"></i></Button>
-                        </Col>
-                    </Row>
-                    </form>
-                    <TodoItems entries={this.state.items}
-                            delete={this.deleteItem}
-                            edit={this.editItem}/>
+                    <Form onSubmit={this.addItem}>
+                        <Row>
+                            <Col xs={10}>
+                                <input 
+                                    ref={(a) => this._inputElement = a}
+                                    placeholder="add new task here" 
+                                    maxLength="30"
+                                    className="addTask">
+                                </input>
+                            </Col>
+                            <Col xs={2}>
+                                <button 
+                                    className="addButton" 
+                                    type="submit">
+                                        <i className="fas fa-plus"></i>
+                                </button>
+                            </Col>
+                        </Row>
+                    </Form>
+                    <TodoItems 
+                        entries={this.state.items}
+                        delete={this.deleteItem}
+                        edit={this.editItem}/>
                 </Container>
             </div>
         );

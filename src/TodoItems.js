@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Button, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import FlipMove from 'react-flip-move';
 
 class TodoItems extends Component {
@@ -8,35 +8,23 @@ class TodoItems extends Component {
         this.createTasks = this.createTasks.bind(this);
     }
 
-    componentDidMount() {
-        this.props.entries.forEach(element => {
-            this.autoResize(element.key);
-            this.autoResize(element.key);
-        });
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.entries !== prevProps.entries) {
-            this.props.entries.forEach(element => {
-                this.autoResize(element.key);
-            });
-        }
-    }
-
     createTasks(item) {
         return (<ListGroup.Item key={item.key}>
                     <Row>
                         <Col xs={10}>
-                            <textarea 
-                                key={item.key}
-                                ref={(a) => this[`textArea${item.key}`] = a}
-                                onChange={() => this.autoResize(item.key)}
+                            <input 
+                                ref={(a) => this[`task${item.key}`] = a}
                                 onBlur={() => this.edit(item.key)}
-                                defaultValue={item.text}>
-                            </textarea>
+                                defaultValue={item.text}
+                                maxLength="30">
+                            </input>
                         </Col>
                         <Col xs={2}>
-                            <Button variant="danger" onClick={() => this.delete(item.key)}><i className="fas fa-trash"></i></Button>
+                            <button 
+                                className="deleteButton" 
+                                onClick={() => this.delete(item.key)}>
+                                    <i className="fas fa-trash-alt"></i>
+                            </button>
                         </Col>
                     </Row>
                 </ListGroup.Item>);
@@ -47,27 +35,14 @@ class TodoItems extends Component {
     }
 
     edit(key) {
-        if(this[`textArea${key}`].value === "")
+        if(this[`task${key}`].value === "")
             this.props.delete(key);
         else
-            this.props.edit(key, this[`textArea${key}`].value);
-    }
-
-    autoResize(key) {
-        console.log('Before ' + this[`textArea${key}`].style.height.toString());
-        this[`textArea${key}`].style.height = "";
-        this[`textArea${key}`].style.height = this[`textArea${key}`].scrollHeight + "px";
-        console.log('After ' + this[`textArea${key}`].style.height.toString());
+            this.props.edit(key, this[`task${key}`].value);
     }
 
     render() {
         var todoEntries = this.props.entries;
-        // sort in reverse order
-        // todoEntries = todoEntries.sort(function (a, b) {
-        //     return a.key < b.key ?  1
-        //          : a.key > b.key ? -1
-        //          : 0;
-        // });
         var listItems = todoEntries.map(this.createTasks);
         return (
             <ListGroup>
@@ -80,14 +55,3 @@ class TodoItems extends Component {
 }
 
 export default TodoItems;
-
-
-/*
-                <ul className="list-group">
-                    <li className="list-group-item active">Cras justo odio</li>
-                    <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Morbi leo risus</li>
-                    <li className="list-group-item">Porta ac consectetur ac</li>
-                    <li className="list-group-item">Vestibulum at eros</li>
-                </ul>
-*/

@@ -3,12 +3,12 @@
 }
 
 .todoListMain h3 {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Montserrat', cursive;
     font-size: 2em;
     text-align: center;
     margin-top: 50px;
     margin-bottom: 20px;
-    color: #010b13;
+    color: #074D8C;
 }
 
 .todoListMain form {
@@ -16,64 +16,62 @@
     border-bottom: 1px solid rgba(0,0,0,.5)
 }
 
-.todoListMain .addTask {
-    align-items: center;
-}
-
 .todoListMain input {
     padding: 11px;
-    font-size: 24px;
+    font-size: 18px;
+    line-height: 1.8;
     width: inherit;
     border: none;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Montserrat', cursive;
     background-color: #00000000;
-    color: #010b13;
+    color: #0B67BA;
 }
 
 .todoListMain input:focus {
     outline: none;
 }
 
-.todoListMain .addButton {
-    color: #010203;
+.todoListMain button {
+    color: #249F24;
     background-color: #00000000;
-    font-size: 44px;
+    font-size: 36px;
     line-height: 1;
     border: none;
     padding: 0px;
-    transition: .5s ease-in-out;
+    transition: .25s ease-in-out;
 }
 
-.todoListMain .addButton:hover {
+.todoListMain button:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.2);
+}
+
+.todoListMain button:focus {
+    outline: none;
 }
 
 .todoListMain .list-group .list-group-item {
     padding: 0px;
     background-color: #00000000;
     border: none;
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-bottom: 1px solid rgba(0,0,0,.5);
     margin-top: 20px;
+}
+
+.todoListMain .list-group .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .todoListMain .list-group .list-group-item .row {
     align-items: center;
 }
 
-.todoListMain .list-group div textarea {
-    width: inherit;
-    background-color: #00000000;
-    padding-left: 11px;
-    border: 1px solid #ffffff00;
-    resize: none;
-    color: #010b13;
-    font-family: 'Rock Salt', cursive;
+.todoListMain .list-group .deleteButton {
     font-size: 24px;
-    overflow: hidden;
-    line-height: 1.5;
+    color: #C62D2D;
 }
 
-.todoListMain .list-group div textarea:focus {
-    outline: none;
+.todoListMain div.col-2 {
+    text-align: center;
 }

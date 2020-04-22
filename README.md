@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### todo.hobbycodes.com deployment commands
+
+sudo chown -R $USER:$USER /var/www/todo.hobbycodes.com/html/
+Upload build using WinSCP
+sudo chown -R www-data:www-data /var/www/todo.hobbycodes.com/html/
+sudo chmod -R 755 /var/www/todo.hobbycodes.com
+
+sudo service nginx reload
+
 ## Available Scripts
 
 In the project directory, you can run:
