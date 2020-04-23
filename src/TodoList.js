@@ -80,7 +80,7 @@ class TodoList extends Component {
                                 <input 
                                     ref={(a) => this._inputElement = a}
                                     placeholder="add new task here" 
-                                    maxLength="30"
+                                    maxLength="42"
                                     className="addTask">
                                 </input>
                             </Col>

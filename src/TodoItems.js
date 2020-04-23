@@ -16,7 +16,7 @@ class TodoItems extends Component {
                                 ref={(a) => this[`task${item.key}`] = a}
                                 onBlur={() => this.edit(item.key)}
                                 defaultValue={item.text}
-                                maxLength="30">
+                                maxLength="42">
                             </input>
                         </Col>
                         <Col xs={2}>
