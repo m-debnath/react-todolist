@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Row, Col, ListGroup } from 'react-bootstrap';
-import FlipMove from 'react-flip-move';
 
 class TodoItems extends Component {
     constructor(props) {
@@ -46,9 +45,7 @@ class TodoItems extends Component {
         var listItems = todoEntries.map(this.createTasks);
         return (
             <ListGroup>
-            <FlipMove duration={150} easing="ease-out">
                 {listItems}
-            </FlipMove>
             </ListGroup>
         );
     }
